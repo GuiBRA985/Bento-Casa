@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suítes Chapada | Hospedagem na Chapada dos Guimarães</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --terra:  #8B5E3C;
+      --terra-light: #C4905E;
+      --verde:  #3A6B4A;
+      --verde-light: #5C9970;
+      --areia:  #F5EFE6;
+      --pedra:  #2C2420;
+      --branco: #FFFDF9;
+      --cinza:  #7A6E68;
+      --sombra: rgba(44,36,32,.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--branco);
+      color: var(--pedra);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 2.5rem;
+      background: rgba(255,253,249,.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(139,94,60,.12);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--verde);
+      letter-spacing: .02em;
+    }
+    .nav-logo span { color: var(--terra); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--pedra);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--terra); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 64px;
+    }
+    .hero-text {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 4rem 3rem 4rem 5vw;
+      background: var(--areia);
+    }
+    .hero-eyebrow {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--terra-light);
+      margin-bottom: 1.2rem;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      line-height: 1.15;
+      color: var(--verde);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--terra);
+    }
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--cinza);
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: .85rem 2.2rem;
+      background: var(--verde);
+      color: #fff;
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background .2s, transform .15s;
+    }
+    .btn:hover { background: var(--verde-light); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--verde);
+      color: var(--verde);
+      margin-left: 1rem;
+    }
+    .btn-outline:hover { background: var(--verde); color: #fff; }
+
+    .hero-gallery {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      overflow: hidden;
+    }
+    .hero-gallery img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s ease;
+    }
+    .hero-gallery img:hover { transform: scale(1.04); }
+    .hero-gallery .span2 { grid-column: span 2; }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 5vw; }
+    .section-label {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--terra-light);
+      margin-bottom: .7rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 2.5vw, 2.4rem);
+      color: var(--pedra);
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      color: var(--cinza);
+      max-width: 540px;
+      font-size: .97rem;
+      margin-bottom: 3rem;
+    }
+
+    /* ── SUÍTES ── */
+    #suites { background: var(--branco); }
+    .suites-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+    .suite-card {
+      border: 1px solid rgba(139,94,60,.15);
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--branco);
+      box-shadow: 0 4px 24px var(--sombra);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .suite-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(44,36,32,.18);
+    }
+    .suite-imgs {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      height: 240px;
+      gap: 3px;
+    }
+    .suite-imgs img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .suite-body { padding: 1.8rem; }
+    .suite-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--verde);
+      margin-bottom: .5rem;
+    }
+    .suite-desc { color: var(--cinza); font-size: .93rem; margin-bottom: 1.4rem; }
+    .amenities {
+      display: flex; flex-wrap: wrap; gap: .5rem;
+      margin-bottom: 1.6rem;
+    }
+    .amenity {
+      display: flex; align-items: center; gap: .35rem;
+      font-size: .8rem; font-weight: 500;
+      background: var(--areia);
+      padding: .35rem .75rem;
+      border-radius: 20px;
+      color: var(--pedra);
+    }
+    .amenity-icon { font-size: 1rem; }
+    .suite-price {
+      display: flex; align-items: baseline; gap: .4rem;
+      margin-bottom: 1.2rem;
+    }
+    .price-from { font-size: .78rem; color: var(--cinza); }
+    .price-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--terra);
+      font-weight: 700;
+    }
+    .price-night { font-size: .78rem; color: var(--cinza); }
+
+    /* ── JARDIM ── */
+    #jardim {
+      background: var(--verde);
+      color: #fff;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    #jardim .section-label { color: rgba(255,255,255,.65); }
+    #jardim .section-title { color: #fff; }
+    #jardim .section-sub { color: rgba(255,255,255,.75); max-width: 100%; }
+    .jardim-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 6px;
+    }
+    .jardim-gallery img {
+      width: 100%; height: 180px;
+      object-fit: cover;
+      border-radius: 3px;
+    }
+    .jardim-gallery img:first-child {
+      grid-column: span 2;
+      height: 220px;
+    }
+
+    /* ── ATRAÇÕES ── */
+    #atracoes { background: var(--areia); }
+    .atracoes-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3.5rem;
+      align-items: start;
+    }
+    .atracoes-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.2rem;
+    }
+    .atracao-card {
+      background: var(--branco);
+      border-radius: 4px;
+      padding: 1.4rem 1.6rem;
+      border-left: 3px solid var(--terra-light);
+      box-shadow: 0 2px 12px var(--sombra);
+      transition: transform .2s, border-color .2s;
+    }
+    .atracao-card:hover {
+      transform: translateX(4px);
+      border-left-color: var(--verde);
+    }
+    .atracao-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: .5rem;
+    }
+    .atracao-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--pedra);
+    }
+    .atracao-tag {
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .2rem .55rem;
+      border-radius: 10px;
+      white-space: nowrap;
+      margin-left: .6rem;
+    }
+    .tag-cachoeira { background: #D5EAF5; color: #1A5C8A; }
+    .tag-caverna   { background: #E8DDF5; color: #5A2D8A; }
+    .tag-mirante   { background: #FFF3D4; color: #7A5200; }
+    .tag-cultura   { background: #D4F5E8; color: #1A6B4A; }
+    .tag-balneario { background: #D4EBF5; color: #1A4D6B; }
+    .tag-natureza  { background: #E8F5D4; color: #3A6B1A; }
+    .tag-trilha    { background: #F5E8D4; color: #6B3A1A; }
+
+    .atracao-desc {
+      font-size: .83rem;
+      color: var(--cinza);
+      margin-bottom: .9rem;
+      line-height: 1.5;
+    }
+    .atracao-maps {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--verde);
+      text-decoration: none;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .atracao-maps:hover { color: var(--terra); }
+    .maps-icon { font-size: .95rem; }
+
+    /* ── COMO CHEGAR ── */
+    #como-chegar {
+      background: var(--pedra);
+      color: #fff;
+      text-align: center;
+    }
+    #como-chegar .section-label { color: var(--terra-light); }
+    #como-chegar .section-title { color: #fff; margin-bottom: .6rem; }
+    #como-chegar .section-sub { color: rgba(255,255,255,.6); margin: 0 auto 3rem; }
+    .mapa-embed {
+      border-radius: 4px;
+      overflow: hidden;
+      max-width: 800px;
+      margin: 0 auto 2.5rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,.35);
+    }
+    .mapa-embed iframe {
+      width: 100%; height: 380px;
+      border: none; display: block;
+    }
+
+    /* ── CONTATO / RESERVA ── */
+    #reservar {
+      background: var(--areia);
+      text-align: center;
+    }
+    #reservar .section-title { margin-bottom: .6rem; }
+    #reservar .section-sub { margin: 0 auto 2.5rem; }
+    .reservar-btns { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+    .btn-whatsapp {
+      background: #25D366;
+      color: #fff;
+      padding: .9rem 2.4rem;
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      transition: background .2s, transform .15s;
+    }
+    .btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--pedra);
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 2rem;
+      font-size: .82rem;
+    }
+    footer strong { color: rgba(255,255,255,.8); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-gallery { height: 50vw; grid-template-rows: 1fr; grid-template-columns: 1fr 1fr 1fr; }
+      .hero-gallery .span2 { grid-column: span 1; }
+      .hero-text { padding: 3rem 6vw; }
+      #jardim { grid-template-columns: 1fr; }
+      .atracoes-intro { grid-template-columns: 1fr; }
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 3.5rem 5vw; }
+      .suite-imgs { height: 180px; }
+      .hero-gallery { height: 55vw; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Suítes <span>Chapada</span></div>
+  <ul class="nav-links">
+    <li><a href="#suites">Suítes</a></li>
+    <li><a href="#jardim">Espaço</a></li>
+    <li><a href="#atracoes">Atrações</a></li>
+    <li><a href="#como-chegar">Como Chegar</a></li>
+    <li><a href="#reservar">Reservar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Chapada dos Guimarães · Mato Grosso</p>
+    <h1 class="hero-title">
+      Desperte entre<br>
+      <em>natureza e silêncio</em>
+    </h1>
+    <p class="hero-desc">
+      Duas suítes confortáveis e privativas, imersas em um jardim exuberante no coração da Chapada dos Guimarães — a 60 km de Cuiabá, perto de tudo que a natureza reservou.
+    </p>
+    <div>
+      <a href="#reservar" class="btn">Ver Disponibilidade</a>
+      <a href="#suites" class="btn btn-outline">Conheça as Suítes</a>
+    </div>
+  </div>
+  <div class="hero-gallery">
+    <img src="1000331263.jpg" alt="Jardim sombreado com bancos de madeira" class="span2">
+    <img src="1000331262.jpg" alt="Vista do jardim sob as mangueiras">
+    <img src="1000331259.jpg" alt="Flores ao pé da árvore">
+  </div>
+</section>
+
+<!-- SUÍTES -->
+<section id="suites">
+  <p class="section-label">Hospedagem</p>
+  <h2 class="section-title">Nossas Suítes</h2>
+  <p class="section-sub">Quartos privativos com tudo que você precisa para descansar após um dia de aventura na Chapada.</p>
+
+  <div class="suites-grid">
+
+    <!-- Suíte 1 -->
+    <div class="suite-card">
+      <div class="suite-imgs">
+        <img src="1000331258.jpg" alt="Interior da Suíte Cerrado">
+        <img src="1000331257.jpg" alt="Frigobar da suíte">
+      </div>
+      <div class="suite-body">
+        <h3 class="suite-name">Suíte Cerrado</h3>
+        <p class="suite-desc">
+          Espaço aconchegante com duas camas, ar-condicionado split e vista para o jardim. Ideal para casais ou duplas de aventureiros.
+        </p>
+        <div class="amenities">
+          <span class="amenity"><span class="amenity-icon">❄️</span> Ar-condicionado</span>
+          <span class="amenity"><span class="amenity-icon">📺</span> Smart TV</span>
+          <span class="amenity"><span class="amenity-icon">🧊</span> Frigobar</span>
+          <span class="amenity"><span class="amenity-icon">🪟</span> Vista jardim</span>
+          <span class="amenity"><span class="amenity-icon">🛏️</span> 2 camas solteiro</span>
+          <span class="amenity"><span class="amenity-icon">🚿</span> Banheiro privativo</span>
+        </div>
+        <div class="suite-price">
+          <span class="price-from">a partir de</span>
+          <span class="price-val">R$ 250</span>
+          <span class="price-night">/ noite</span>
+        </div>
+        <a href="#reservar" class="btn">Reservar Agora</a>
+      </div>
+    </div>
+
+    <!-- Suíte 2 -->
+    <div class="suite-card">
+      <div class="suite-imgs">
+        <img src="1000331256.jpg" alt="Interior da Suíte Mangueira">
+        <img src="1000331258.jpg" alt="Detalhe das camas">
+      </div>
+      <div class="suite-body">
+        <h3 class="suite-name">Suíte Mangueira</h3>
+        <p class="suite-desc">
+          Quarto amplo e luminoso com teto de madeira rústico e janelas que trazem a brisa do jardim para dentro. Perfeita para um retiro tranquilo.
+        </p>
+        <div class="amenities">
+          <span class="amenity"><span class="amenity-icon">❄️</span> Ar-condicionado</span>
+          <span class="amenity"><span class="amenity-icon">📺</span> Smart TV</span>
+          <span class="amenity"><span class="amenity-icon">🧊</span> Frigobar</span>
+          <span class="amenity"><span class="amenity-icon">🪵</span> Teto de madeira</span>
+          <span class="amenity"><span class="amenity-icon">🛏️</span> 2 camas solteiro</span>
+          <span class="amenity"><span class="amenity-icon">🚿</span> Banheiro privativo</span>
+        </div>
+        <div class="suite-price">
+          <span class="price-from">a partir de</span>
+          <span class="price-val">R$ 250</span>
+          <span class="price-night">/ noite</span>
+        </div>
+        <a href="#reservar" class="btn">Reservar Agora</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- JARDIM -->
+<section id="jardim">
+  <div>
+    <p class="section-label">Área Comum</p>
+    <h2 class="section-title">Um jardim vivo como sala de estar</h2>
+    <p class="section-sub">
+      Sob a sombra generosa das mangueiras, nosso jardim convida para manhãs lentas, conversas e o canto dos pássaros do cerrado. Bancos rústicos, flores recém-plantadas e espaço de sobra para respirar.
+    </p>
+    <a href="#reservar" class="btn" style="background:var(--terra);margin-top:.5rem">Quero Me Hospedar</a>
+  </div>
+  <div class="jardim-gallery">
+    <img src="1000331263.jpg" alt="Vista geral do jardim">
+    <img src="1000331261.jpg" alt="Banco de madeira no jardim">
+    <img src="1000331259.jpg" alt="Flores impatiens ao pé da mangueira">
+  </div>
+</section>
+
+<!-- ATRAÇÕES -->
+<section id="atracoes">
+  <div class="atracoes-intro">
+    <div>
+      <p class="section-label">Turismo</p>
+      <h2 class="section-title">O que fazer na Chapada</h2>
+    </div>
+    <p class="section-sub" style="margin:0;padding-top:1rem;">
+      A Chapada dos Guimarães concentra algumas das mais deslumbrantes paisagens do Brasil — cachoeiras, cavernas, mirantes e cultura viva. Cada botão abre a rota <strong>a partir das suítes</strong> diretamente no Google Maps.
+    </p>
+  </div>
+
+  <div class="atracoes-list">
+
+    <div class="atracao-card">
+      <div class="atracao-top">
+        <h3 class="atracao-name">Cachoeira Véu de Noiva</h3>
+        <span class="atracao-tag tag-cachoeira">Cachoeira</span>
+      </div>
+      <p class="atracao-desc">Cartão-postal da Chapada. Queda de 86 m, localizada dentro do Parque Nacional, logo na entrada da cidade. Visitação gratuita.</p>
+      <a class="atracao-maps" href="https://www.google.com/maps/dir/-15.470382,-55.749426/Cachoeira+V%C3%A9u+de+Noiva,+Chapada+dos+Guimar%C3%A3es,+MT" target="_blank" rel="noopener">
+        <span class="maps-icon">📍</span> Ver no Maps
+      </a>
+    </div>
+
+    <div class="atracao-card">
+      <div class="atracao-top">
+        <h3 class="atracao-name">Cidade de Pedra</h3>
+        <span class="atracao-tag tag-natureza">Natureza</span>
+      </div>
+      <p class="atracao-desc">Formações de arenito com formas surreais esculpidas pela erosão. Um dos cenários mais fotográficos do Mato Grosso.</p>
+      <a class="atracao-maps" href="https://www.google.com/maps/dir/-15.470382,-55.749426/Cidade+de+Pedra,+Chapada+dos+Guimar%C3%A3es,+MT" target="_blank" rel="noopener">
+        <span class="maps-icon">📍</span> Ver no Maps
+      </a>
+    </div>
+
+    <div class="atracao-card">
+      <div class="atracao-top">
+        <h3 class="atracao-name">Caverna Aroe Jarí</h3>
+        <span class="atracao-tag tag-caverna">Caverna</span>
+      </div>
+      <p class="atracao-desc">A maior caverna de arenito do Brasil, com 1.110 m de extensão. Acesso somente com guia credenciado.</p>
+      <a class="atracao-maps" href="https://www.google.com/maps/dir/-15.470382,-55.749426/Caverna+Aroe+Jar%C3%AD,+Chapada+dos+Guimar%C3%A3es,+MT" target="_blank" rel="noopener">
+        <span class="maps-icon">📍</span> Ver no Maps
+      </a>
+    </div>
+
+    <div class="atracao-card">
+      <div class="atracao-top">
+        <h3 class="atracao-name">Lagoa Azul</h3>
+        <span class="atracao-tag tag-natureza">Natureza</span>
+      </div>
+      <p class="atracao-desc">Gruta com lagoa de água cristalina de cor azulada, especialmente bela entre junho e setembro quando o sol entra diretamente na caverna.</p>
+      <a class="atracao-maps" href="https://www.google.com/maps/dir/-15.470382,-55.749426/Lagoa+Azul,+Chapada+dos+Guimar%C3%A3es,+MT" target="_blank" rel="noopener">
+        <span class="maps-icon">📍</span> Ver no Maps
+      </a>
+    </div>
+
+    <div class="atracao-card">
+      <div class="atracao-top">
+        <h3 class="atracao-name">Mirante do Véu de Noiva</h3>
+        <span class="atracao-tag tag-mirante">Mirante</span>
+      </div>
+      <p class="atracao-desc">Vista panorâmica de tirar o fôlego sobre o vale e a cachoeira mais famosa da Chapada. Melhor horário: fim da tarde.</p>
+      <a class="atracao-maps" href="https://www.google.com/maps/dir/-15.470382,-55.749426/Mirante+V%C3%A9u+de+Noiva,+Chapada+dos+Guimar%C3%A3es,+MT" target="_blank" rel="noopener">
+        <span class="maps-icon">📍</span> Ver no Maps
+      </a>
+    </div>
+
+    <div class="atracao-card">
+      <div class="atracao-top">
+        <h3 class="atracao-name">Centro Geodésico do Brasil</h3>
+        <span class="atracao-tag tag-cultura">Cultura</span>
+      </div>
+      <p class="atracao-desc">Marco que marca o centro geográfico da América do Sul, com um obelisco histórico e um mirante. Pôr do sol imperdível.</p>
+      <a class="atracao-maps" href="https://www.google.com/maps/dir/-15.470382,-55.749426/Centro+Geod%C3%A9sico+do+Brasil,+Chapada+dos+Guimar%C3%A3es,+MT" target="_blank" rel="noopener">
+        <span class="maps-icon">📍</span> Ver no Maps
+      </a>
+    </div>
+
+    <div class="atracao-card">
+      <div class="atracao-top">
+        <h3 class="atracao-name">Igreja de Sant'Ana do Sacramento</h3>
+        <span class="atracao-tag tag-cultura">Cultura</span>
+      </div>
+      <p class="atracao-desc">Fundada em 1811 e tombada pelo IPHAN, é o coração histórico da cidade, na bela Praça Dom Wunibaldo.</p>
+      <a class="atracao-maps" href="https://www.google.com/maps/dir/-15.470382,-55.749426/Igreja+Sant%27Ana+do+Sacramento,+Chapada+dos+Guimar%C3%A3es,+MT" target="_blank" rel="noopener">
+        <span class="maps-icon">📍</span> Ver no Maps
+      </a>
+    </div>
+
+    <div class="atracao-card">
+      <div class="atracao-top">
+        <h3 class="atracao-name">Circuito Águas do Cerrado</h3>
+        <span class="atracao-tag tag-trilha">Trilha</span>
+      </div>
+      <p class="atracao-desc">Trilha de 5 km com rios, poços naturais e o famoso Poço do Amor. Parte do trajeto pode ser feita de carro.</p>
+      <a class="atracao-maps" href="https://www.google.com/maps/dir/-15.470382,-55.749426/Circuito+%C3%81guas+do+Cerrado,+Chapada+dos+Guimar%C3%A3es,+MT" target="_blank" rel="noopener">
+        <span class="maps-icon">📍</span> Ver no Maps
+      </a>
+    </div>
+
+    <div class="atracao-card">
+      <div class="atracao-top">
+        <h3 class="atracao-name">Cachoeira da Pedra Furada</h3>
+        <span class="atracao-tag tag-cachoeira">Cachoeira</span>
+      </div>
+      <p class="atracao-desc">Queda d'água que atravessa uma formação rochosa perfurada naturalmente. Cenário único e trilha acessível.</p>
+      <a class="atracao-maps" href="https://www.google.com/maps/dir/-15.470382,-55.749426/Cachoeira+da+Pedra+Furada,+Chapada+dos+Guimar%C3%A3es,+MT" target="_blank" rel="noopener">
+        <span class="maps-icon">📍</span> Ver no Maps
+      </a>
+    </div>
+
+    <div class="atracao-card">
+      <div class="atracao-top">
+        <h3 class="atracao-name">Cachoeira do Paraíso</h3>
+        <span class="atracao-tag tag-cachoeira">Cachoeira</span>
+      </div>
+      <p class="atracao-desc">Piscinas naturais em cascata com águas translúcidas. Um dos melhores banhos de cachoeira da região.</p>
+      <a class="atracao-maps" href="https://www.google.com/maps/dir/-15.470382,-55.749426/Cachoeira+do+Para%C3%ADso,+Chapada+dos+Guimar%C3%A3es,+MT" target="_blank" rel="noopener">
+        <span class="maps-icon">📍</span> Ver no Maps
+      </a>
+    </div>
+
+    <div class="atracao-card">
+      <div class="atracao-top">
+        <h3 class="atracao-name">Balneário 7 Jotas</h3>
+        <span class="atracao-tag tag-balneario">Balneário</span>
+      </div>
+      <p class="atracao-desc">Um dos balneários mais populares no trajeto Cuiabá–Chapada. Ótima parada para banho na estrada de chegada.</p>
+      <a class="atracao-maps" href="https://www.google.com/maps/dir/-15.470382,-55.749426/Balne%C3%A1rio+7+Jotas,+Chapada+dos+Guimar%C3%A3es,+MT" target="_blank" rel="noopener">
+        <span class="maps-icon">📍</span> Ver no Maps
+      </a>
+    </div>
+
+    <div class="atracao-card">
+      <div class="atracao-top">
+        <h3 class="atracao-name">Cachoeira do Índio</h3>
+        <span class="atracao-tag tag-cachoeira">Cachoeira</span>
+      </div>
+      <p class="atracao-desc">Cachoeira exuberante em área de mata preservada, com registros de pinturas rupestres nas proximidades.</p>
+      <a class="atracao-maps" href="https://www.google.com/maps/dir/-15.470382,-55.749426/Cachoeira+do+%C3%8Dndio,+Chapada+dos+Guimar%C3%A3es,+MT" target="_blank" rel="noopener">
+        <span class="maps-icon">📍</span> Ver no Maps
+      </a>
+    </div>
+
+    <div class="atracao-card">
+      <div class="atracao-top">
+        <h3 class="atracao-name">Caverna Kiogo Brado</h3>
+        <span class="atracao-tag tag-caverna">Caverna</span>
+      </div>
+      <p class="atracao-desc">Gruta que dá acesso à Lagoa Azul. A trilha entre as duas é uma das experiências mais memoráveis da Chapada.</p>
+      <a class="atracao-maps" href="https://www.google.com/maps/dir/-15.470382,-55.749426/Caverna+Kiogo+Brado,+Chapada+dos+Guimar%C3%A3es,+MT" target="_blank" rel="noopener">
+        <span class="maps-icon">📍</span> Ver no Maps
+      </a>
+    </div>
+
+    <div class="atracao-card">
+      <div class="atracao-top">
+        <h3 class="atracao-name">Cachoeira dos Namorados</h3>
+        <span class="atracao-tag tag-cachoeira">Cachoeira</span>
+      </div>
+      <p class="atracao-desc">Piscinas naturais românticas em meio à vegetação densa do cerrado. Perfeita para casais.</p>
+      <a class="atracao-maps" href="https://www.google.com/maps/dir/-15.470382,-55.749426/Cachoeira+dos+Namorados,+Chapada+dos+Guimar%C3%A3es,+MT" target="_blank" rel="noopener">
+        <span class="maps-icon">📍</span> Ver no Maps
+      </a>
+    </div>
+
+    <div class="atracao-card">
+      <div class="atracao-top">
+        <h3 class="atracao-name">Parque Nacional — Sede</h3>
+        <span class="atracao-tag tag-natureza">Parque</span>
+      </div>
+      <p class="atracao-desc">32.630 ha de cerrado preservado. Entrada gratuita, aberto todos os dias das 9h às 16h, a 13 km do centro.</p>
+      <a class="atracao-maps" href="https://www.google.com/maps/dir/-15.470382,-55.749426/Parque+Nacional+Chapada+dos+Guimar%C3%A3es,+MT" target="_blank" rel="noopener">
+        <span class="maps-icon">📍</span> Ver no Maps
+      </a>
+    </div>
+
+    <div class="atracao-card">
+      <div class="atracao-top">
+        <h3 class="atracao-name">Praça Dom Wunibaldo</h3>
+        <span class="atracao-tag tag-cultura">Centro</span>
+      </div>
+      <p class="atracao-desc">Praça central com artesanato local, restaurantes e bares com música ao vivo. Noites animadas especialmente nos fins de semana.</p>
+      <a class="atracao-maps" href="https://www.google.com/maps/dir/-15.470382,-55.749426/Pra%C3%A7a+Dom+Wunibaldo,+Chapada+dos+Guimar%C3%A3es,+MT" target="_blank" rel="noopener">
+        <span class="maps-icon">📍</span> Ver no Maps
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMO CHEGAR -->
+<section id="como-chegar">
+  <p class="section-label">Localização</p>
+  <h2 class="section-title">Como Chegar</h2>
+  <p class="section-sub">As suítes ficam na zona rural de Chapada dos Guimarães, a 69 km de Cuiabá pela MT-251. Acesso fácil de carro — o mapa abaixo mostra a localização exata.</p>
+  <div class="mapa-embed">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3843.5!2d-55.749426!3d-15.470382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zLTE1LjQ3MDM4MiwtNTUuNzQ5NDI2!5e0!3m2!1spt-BR!2sbr!4v1700000000000"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+  <a href="https://www.google.com/maps/search/?api=1&query=-15.470382,-55.749426" target="_blank" rel="noopener" class="btn" style="background:var(--terra)">Abrir no Google Maps</a>
+</section>
+
+<!-- RESERVAR -->
+<section id="reservar">
+  <p class="section-label">Reserve</p>
+  <h2 class="section-title">Pronto para viver a Chapada?</h2>
+  <p class="section-sub">Entre em contato pelo WhatsApp para verificar disponibilidade e tarifas. Respondemos rapidinho!</p>
+  <div class="reservar-btns">
+    <a href="https://wa.me/556500000000?text=Ol%C3%A1%21+Gostaria+de+reservar+uma+su%C3%ADte+na+Chapada+dos+Guimar%C3%A3es" target="_blank" rel="noopener" class="btn-whatsapp">
+      💬 Reservar pelo WhatsApp
+    </a>
+    <a href="#suites" class="btn btn-outline" style="border-color:var(--verde);color:var(--verde);">Ver as Suítes</a>
+  </div>
+  <p style="margin-top:2rem;font-size:.82rem;color:var(--cinza);">Aceitamos reservas pelo Airbnb, Booking.com e diretamente.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Suítes Chapada</strong> · Chapada dos Guimarães, Mato Grosso, Brasil</p>
+  <p style="margin-top:.4rem">© 2026 · Todos os direitos reservados</p>
+</footer>
+
+</body>
+</html>
