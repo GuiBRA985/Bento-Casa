@@ -746,8 +746,6 @@
       }
     }
   </style>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="assets/mapa-vip.css">
 </head>
 
 <body>
@@ -800,7 +798,7 @@
         </p>
 
         <div class="hero-actions">
-<a class="btn" href="#atracoes" data-vip="hero">Expedições da Chez Rose</a>
+<a class="btn" href="mapa.html" data-vip="hero">Expedições da Chez Rose</a>
           <a
             href="https://www.airbnb.com/h/chezrosemt"
             target="_blank"
@@ -985,14 +983,10 @@
       </div>
     </section>
 
-    <!-- EXPEDIÇÕES DA POUSADA VIP -->
-<section id="atracoes" class="vip-section" data-map-source="mapas/chez-rose.json">
-<p class="section-label" data-vip="badge">Pousada VIP · Mapa personalizado</p>
-<h2 class="section-title" data-vip="title">Explore a Chapada com a Chez Rose</h2>
-<p class="section-sub" data-vip="intro">Escolha os passeios da sua expedição. A Chez Rose é o ponto de partida e de retorno, com traslado desde o aeroporto de Várzea Grande.</p>
-<div class="vip-toolbar"><label><span data-vip="expedition">Expedição</span> <select id="vip-expedition"></select></label><div class="vip-tabs"><button type="button" data-mode="attractions" aria-pressed="true" data-vip="attractions">Atrações</button><button type="button" data-mode="transfer" aria-pressed="false" data-vip="transfer">Traslado</button><button type="button" data-mode="quote" aria-pressed="false" data-vip="quote">Orçamento</button></div></div>
-<p id="vip-status" role="status">Carregando mapa…</p>
-<div class="vip-layout"><div><div id="vip-map" aria-label="Mapa personalizado da Chez Rose"></div><p class="vip-note" data-vip="note">Visitas sujeitas ao clima, às regras de acesso e à disponibilidade de guia. As rotas de navegação abrem no Google Maps.</p><a id="vip-route" class="btn" target="_blank" rel="noopener noreferrer" data-vip="route">Ver rota desde a pousada</a></div><aside class="vip-panel"><div id="vip-attractions"></div><div id="vip-transfer" hidden><h3 data-vip="transferTitle">Do aeroporto à Chez Rose</h3><p data-vip="transferText">Aeroporto Marechal Rondon, Várzea Grande → Chez Rose. Consulte horários e valores com a pousada.</p><a id="vip-airport-route" class="btn" target="_blank" rel="noopener noreferrer" data-vip="routeTransfer">Abrir rota do traslado</a></div><form id="vip-quote" hidden><h3 data-vip="quoteTitle">Sua expedição com a Chez Rose</h3><p id="vip-selected"></p><label><span data-vip="name">Seu nome</span><input name="nome" autocomplete="name" required maxlength="100"></label><label><span data-vip="date">Chegada prevista</span><input name="data" type="date" required></label><label><span data-vip="people">Pessoas</span><input name="pessoas" type="number" min="1" max="100" value="2" required></label><label><span data-vip="days">Dias de passeio</span><input name="dias" type="number" min="1" max="30" value="3" required></label><label class="vip-check"><input name="traslado" type="checkbox" checked><span data-vip="includeTransfer">Incluir traslado do aeroporto</span></label><button class="btn btn-whatsapp" type="submit" data-vip="send">Solicitar orçamento pelo WhatsApp</button><p class="vip-note" data-vip="quoteNote">A pousada confirma roteiro, disponibilidade e valores. Este pedido não confirma uma reserva.</p></form></aside></div>
+    <section id="atracoes">
+<p class="section-label" data-i18n="tourism_label">Turismo</p>
+<h2 class="section-title" data-i18n="attractions_title">O que fazer na Chapada</h2>
+<a href="mapa.html" class="btn" id="open-vip-map">🗺️ Atrações — abrir mapa da Chez Rose</a>
 </section>
 
 <!-- COMO CHEGAR -->
@@ -1311,7 +1305,8 @@
     });
   </script>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="assets/mapa-vip.js"></script>
-</body>
+<script>
+function updateMapLink(){const l=document.documentElement.lang.split('-')[0];const texts={pt:'Atrações — abrir mapa da Chez Rose',en:'Attractions — open Chez Rose map',es:'Atracciones — abrir mapa de Chez Rose',fr:'Attractions — ouvrir la carte Chez Rose'};document.getElementById('open-vip-map').textContent='🗺️ '+(texts[l]||texts.pt);document.querySelectorAll('[data-vip="hero"]').forEach(e=>e.textContent=texts[l]||texts.pt)}
+new MutationObserver(updateMapLink).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});updateMapLink();
+</script></body>
 </html>
