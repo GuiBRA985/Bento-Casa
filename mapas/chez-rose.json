@@ -1,0 +1,153 @@
+{
+  "id": "chez-rose",
+  "nome": "Chez Rose",
+  "tipo": "pousada-vip",
+  "whatsapp": "5565992137583",
+  "base": {
+    "nome": "Chez Rose",
+    "lat": -15.470382,
+    "lng": -55.749426
+  },
+  "aeroporto": {
+    "nome": "Aeroporto Internacional Marechal Rondon",
+    "lat": -15.6510677,
+    "lng": -56.120279
+  },
+  "expedicoes": [
+    {
+      "id": "chapada",
+      "nome": "Chapada dos Guimarães",
+      "descricao": "Cachoeiras, cavernas, mirantes e cultura, com saída e retorno à Chez Rose.",
+      "atracoes": [
+        {
+          "id": "veu-de-noiva",
+          "nome": "Cachoeira Véu de Noiva",
+          "tipo": "Cachoeira",
+          "descricao": "Cartão-postal da Chapada, dentro do Parque Nacional.",
+          "lat": -15.407390714918305,
+          "lng": -55.83219478594039
+        },
+        {
+          "id": "cidade-de-pedra",
+          "nome": "Cidade de Pedra",
+          "tipo": "Formação rochosa",
+          "descricao": "Formações de arenito e uma das paisagens mais marcantes da região.",
+          "lat": -15.300873624658351,
+          "lng": -55.841113116644756
+        },
+        {
+          "id": "aroe-jari",
+          "nome": "Caverna Aroe Jari",
+          "tipo": "Caverna",
+          "descricao": "Grande caverna de arenito, com visitação acompanhada por guia.",
+          "lat": -15.600059350667145,
+          "lng": -55.477048060816
+        },
+        {
+          "id": "lagoa-azul",
+          "nome": "Lagoa Azul",
+          "tipo": "Gruta",
+          "descricao": "Gruta com água cristalina e tons azulados em determinadas épocas.",
+          "lat": -15.600018016222627,
+          "lng": -55.477005145474564
+        },
+        {
+          "id": "mirante-veu-de-noiva",
+          "nome": "Mirante do Véu de Noiva",
+          "tipo": "Mirante",
+          "descricao": "Vista panorâmica para o vale e para a cachoeira.",
+          "lat": -15.4074179,
+          "lng": -55.8326158
+        },
+        {
+          "id": "centro-geodesico",
+          "nome": "Centro Geodésico",
+          "tipo": "Mirante",
+          "descricao": "Mirante histórico e um dos pontos mais conhecidos da Chapada.",
+          "lat": -15.47933509601598,
+          "lng": -55.68788164732442
+        },
+        {
+          "id": "igreja-santana",
+          "nome": "Igreja de Sant'Ana",
+          "tipo": "Cultura",
+          "descricao": "Patrimônio histórico localizado na praça central da cidade.",
+          "lat": -15.459015,
+          "lng": -55.7473427
+        },
+        {
+          "id": "aguas-do-cerrado",
+          "nome": "Circuito Águas do Cerrado",
+          "tipo": "Circuito",
+          "descricao": "Trilha com rios, poços naturais e paisagens do cerrado.",
+          "lat": -15.642512501215855,
+          "lng": -55.46708812490113
+        },
+        {
+          "id": "pedra-furada",
+          "nome": "Cachoeira da Pedra Furada",
+          "tipo": "Cachoeira",
+          "descricao": "Queda d'água em uma formação rochosa naturalmente perfurada.",
+          "lat": -15.360021168475438,
+          "lng": -55.43227186082058
+        },
+        {
+          "id": "paraiso",
+          "nome": "Cachoeira do Paraíso",
+          "tipo": "Cachoeira",
+          "descricao": "Piscinas naturais em cascata com águas translúcidas.",
+          "lat": -15.506552546641089,
+          "lng": -55.417970715552904
+        },
+        {
+          "id": "sete-jotas",
+          "nome": "Balneário 7 Jotas",
+          "tipo": "Balneário",
+          "descricao": "Parada popular no trajeto entre Cuiabá e Chapada.",
+          "lat": -15.350687564719284,
+          "lng": -55.88593004500605
+        },
+        {
+          "id": "cachoeira-do-indio",
+          "nome": "Cachoeira do Índio",
+          "tipo": "Cachoeira",
+          "descricao": "Cachoeira em área preservada, cercada pela vegetação do cerrado.",
+          "lat": -15.44307938023827,
+          "lng": -55.66736581121171
+        },
+        {
+          "id": "kiogo-brado",
+          "nome": "Caverna Kiogo Brado",
+          "tipo": "Caverna",
+          "descricao": "Gruta de arenito integrada aos roteiros de cavernas da região.",
+          "lat": -15.612123737786227,
+          "lng": -55.50312829695671
+        },
+        {
+          "id": "cachoeira-dos-namorados",
+          "nome": "Cachoeira dos Namorados",
+          "tipo": "Cachoeira",
+          "descricao": "Piscinas naturais cercadas pela vegetação do cerrado.",
+          "lat": -15.407593124514753,
+          "lng": -55.82268163198422
+        },
+        {
+          "id": "parque-nacional",
+          "nome": "Parque Nacional",
+          "tipo": "Parque",
+          "descricao": "Área protegida com trilhas, mirantes, cachoeiras e cerrado preservado.",
+          "lat": -15.4055128,
+          "lng": -55.8295161
+        },
+        {
+          "id": "praca-dom-wunibaldo",
+          "nome": "Praça Dom Wunibaldo",
+          "tipo": "Cultura",
+          "descricao": "Praça central com restaurantes, artesanato e movimento noturno.",
+          "lat": -15.4581961,
+          "lng": -55.7473724
+        }
+      ]
+    }
+  ]
+}
